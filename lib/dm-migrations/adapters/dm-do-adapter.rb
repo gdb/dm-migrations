@@ -240,6 +240,7 @@ module DataMapper
             statement << "(#{connection.quote_value(length)})"
           end
 
+          statement << " CHARACTER SET #{connection.quote_value(schema[:character_set])}" if schema.key?(:character_set)
           statement << " DEFAULT #{connection.quote_value(schema[:default])}" if schema.key?(:default)
           statement << ' NOT NULL' unless schema[:allow_nil]
           statement
